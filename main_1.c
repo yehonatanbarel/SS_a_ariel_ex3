@@ -5,94 +5,6 @@
 #define TXT 1024 // need to check
 #define WORD 30
 
-// this enum is for declare the geometry of every letter
-enum Geo
-{
-    a = 1,
-    b,
-    c,
-    d,
-    e,
-    f,
-    g,
-    h,
-    i,
-    j,
-    k,
-    l,
-    m,
-    n,
-    o,
-    p,
-    q,
-    r,
-    s,
-    t,
-    u,
-    v,
-    w,
-    x,
-    y,
-    z,
-    A = 1,
-    B,
-    C,
-    D,
-    E,
-    F,
-    G,
-    H,
-    I,
-    J,
-    K,
-    L,
-    M,
-    N,
-    O,
-    P,
-    Q,
-    R,
-    S,
-    T,
-    U,
-    V,
-    W,
-    X,
-    Y,
-    Z,
-};
-
-char arrLowerGeo[26] = {a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z}; // 97-122
-char arrUperGeo[26] = {
-    A,
-    B,
-    C,
-    D,
-    E,
-    F,
-    G,
-    H,
-    I,
-    J,
-    K,
-    L,
-    M,
-    N,
-    O,
-    P,
-    Q,
-    R,
-    S,
-    T,
-    U,
-    V,
-    W,
-    X,
-    Y,
-    Z,
-}; //65-90
-
-
 // =================== FOR GEMATRIYA =============================
 int calcGeo(char word[1024])
 {
@@ -141,9 +53,9 @@ int calcGeo(char word[1024])
         case 109: // m
             sum += 13;
             break;
-        case 110: // n 
+        case 110: // n
             sum += 14;
-            break; 
+            break;
         case 111: // o
             sum += 15;
             break;
@@ -180,13 +92,13 @@ int calcGeo(char word[1024])
         case 122: // z
             sum += 26;
             break;
-        case 65:  // A
+        case 65: // A
             sum += 1;
             break;
         case 66: // B
             sum += 2;
             break;
-        case 67:  // C
+        case 67: // C
             sum += 3;
             break;
         case 68: // D
@@ -218,7 +130,7 @@ int calcGeo(char word[1024])
             break;
         case 77: // M
             sum += 13;
-            break; 
+            break;
         case 78: // N
             sum += 14;
             break;
@@ -425,7 +337,7 @@ int digitGeo(char c)
     case 86: // V
         return 22;
 
-    case 87: // W 
+    case 87: // W
         return 23;
 
     case 88: // X
@@ -453,7 +365,6 @@ int digitGeo(char c)
 
 // =================== FOR GEMATRIYA =========================
 
-
 //char *
 void lstGeo(char word[30], char txt[1024])
 {
@@ -470,19 +381,19 @@ void lstGeo(char word[30], char txt[1024])
     {
         char cStart = txt[i];
         // this condition is to make sure that the word wont start with space or something that it's gematriya is zero
-       if ( digitGeo(cStart) == 0)
+        if (digitGeo(cStart) == 0)
         {
-           continue;
-       }
-        
+            continue;
+        }
+
         // check if the current 'i' element is at the same geomentry of the word, if it does concat it to finalStr
 
         if (digitGeo(txt[i]) == sum)
         {
-            printf("%d\n", digitGeo(txt[i]));
+            //printf("%d\n", digitGeo(txt[i]));
             strncat(finalStr, &cStart, 1); // notice this is str'n'cat
             strcat(finalStr, separator);   // this is strcat (no 'n')
-            continue;                         // here we need to break and  start a new loop becuase we dont want to keep checking the 'j'
+            continue;                      // here we need to break and  start a new loop becuase we dont want to keep checking the 'j'
         }
         else
         {
@@ -506,9 +417,9 @@ void lstGeo(char word[30], char txt[1024])
         // at the end of the inner loop we clean the tempStr and start all over again but now the outer loop move one step ahead (i++)
         memset(tempStr, 0, strlen(tempStr)); // this memset is puting in all of the tempStr zero's
     }
-    printf("%ld", strlen(finalStr));
-    finalStr[strlen(finalStr)-1] = '\0';
-    printf("%s",finalStr);
+    //printf("%ld", strlen(finalStr));
+    finalStr[strlen(finalStr) - 1] = '\0';
+    printf("Gematria Sequeqnces: %s", finalStr);
 }
 
 //=================== TRY WITH WHILE LOOP ============THIS DIDNT WORK===========
@@ -531,7 +442,7 @@ void lstGeo_2(char word[30], char txt[1024])
 
         if (digitGeo(txt[i]) == sum)
         {
-            printf("%d\n", digitGeo(txt[i]));
+            // printf("%d\n", digitGeo(txt[i]));
             strncat(finalStr, &cStart, 1); // notice this is str'n'cat
             strcat(finalStr, separator);   // this is strcat (no 'n')
             break;                         // here we need to break and  start a new loop becuase we dont want to keep checking the 'j'
@@ -542,7 +453,7 @@ void lstGeo_2(char word[30], char txt[1024])
             //printf("%s",tempStr);
         }
         //inner loop to check the sequence from 'i' (from the outer loop) and forward
-        int j = i+1;
+        int j = i + 1;
         while (calcGeo(tempStr) < sum)
         {
             char cForward = txt[j];
@@ -560,13 +471,10 @@ void lstGeo_2(char word[30], char txt[1024])
         // at the end of the inner loop we clean the tempStr and start all over again but now the outer loop move one step ahead (i++)
         memset(tempStr, 0, strlen(tempStr)); // this memset is puting in all of the tempStr zero's
     }
-    printf("%ld", strlen(finalStr));
-    printf("%s",finalStr);
+    //printf("%ld", strlen(finalStr));
+    printf("%s", finalStr);
 }
 //=================== TRY WITH WHILE LOOP ============THIS DIDNT WORK===========
-
-
-
 
 // ================= REVERSE FOR ATBASH ==============
 
@@ -617,9 +525,9 @@ int calcGeoAtBash(char word[1024])
         case 109: // m
             sum += 14;
             break;
-        case 110: // n 
+        case 110: // n
             sum += 13;
-            break; 
+            break;
         case 111: // o
             sum += 12;
             break;
@@ -656,13 +564,13 @@ int calcGeoAtBash(char word[1024])
         case 122: // z
             sum += 1;
             break;
-        case 65:  // A
+        case 65: // A
             sum += 26;
             break;
         case 66: // B
             sum += 25;
             break;
-        case 67:  // C
+        case 67: // C
             sum += 24;
             break;
         case 68: // D
@@ -694,7 +602,7 @@ int calcGeoAtBash(char word[1024])
             break;
         case 77: // M
             sum += 14;
-            break; 
+            break;
         case 78: // N
             sum += 13;
             break;
@@ -758,159 +666,159 @@ int digitGeoAtBash(char c)
     int digit = ("%d", c);
     switch (digit)
     {
-    case 97: // a
+    case 97:       // a
         return 26; // z
-    case 98: // b
+    case 98:       // b
         return 25; // y
 
-    case 99: // c
+    case 99:       // c
         return 24; // x
 
-    case 100: // d
+    case 100:      // d
         return 23; // w
 
-    case 101: // e
+    case 101:      // e
         return 22; // v
 
-    case 102: // f
+    case 102:      // f
         return 21; // u
 
-    case 103: // g
+    case 103:      // g
         return 20; // t
 
-    case 104: // h
+    case 104:      // h
         return 19; // s
 
-    case 105: // i
+    case 105:      // i
         return 18; // r
 
-    case 106: // j
+    case 106:      // j
         return 17; // q
 
-    case 107: // k
+    case 107:      // k
         return 16; // p
 
-    case 108: // l
+    case 108:      // l
         return 15; // o
 
-    case 109: // m
+    case 109:      // m
         return 14; // n
 
-    case 110: // n
+    case 110:      // n
         return 13; // m
 
-    case 111: // o
+    case 111:      // o
         return 12; // l
 
-    case 112: // p
+    case 112:      // p
         return 11; // k
 
-    case 113: // q
+    case 113:      // q
         return 10; // j
 
-    case 114: // r
+    case 114:     // r
         return 9; // i
 
-    case 115: // s
+    case 115:     // s
         return 8; // h
 
-    case 116: // t
+    case 116:     // t
         return 7; // g
 
-    case 117: // u
+    case 117:     // u
         return 6; // f
 
-    case 118: // v
+    case 118:     // v
         return 5; // e
 
-    case 119: // w
+    case 119:     // w
         return 4; // d
 
-    case 120: // x
+    case 120:     // x
         return 3; // c
 
-    case 121: // y
+    case 121:     // y
         return 2; // b
 
-    case 122: // z
+    case 122:     // z
         return 1; // a
 
-    case 65: // A
+    case 65:       // A
         return 26; // Z
 
-    case 66: // B 
+    case 66:       // B
         return 25; // Y
 
-    case 67: // C
+    case 67:       // C
         return 24; // X
 
-    case 68: // D
+    case 68:       // D
         return 23; // W
 
-    case 69: // E
+    case 69:       // E
         return 22; // V
 
-    case 70: // F
+    case 70:       // F
         return 21; // U
 
-    case 71: // G
+    case 71:       // G
         return 20; // T
 
-    case 72: // H
+    case 72:       // H
         return 19; // S
 
-    case 73: // I
+    case 73:       // I
         return 18; // R
 
-    case 74: // J
+    case 74:       // J
         return 17; // Q
 
-    case 75: // K
+    case 75:       // K
         return 16; // P
 
-    case 76: // L
+    case 76:       // L
         return 15; // O
 
-    case 77: // M
+    case 77:       // M
         return 14; // N
 
-    case 78: // N
+    case 78:       // N
         return 13; // M
 
-    case 79: // O
+    case 79:       // O
         return 12; // L
 
-    case 80: // P
+    case 80:       // P
         return 11; // K
 
-    case 81: // Q
+    case 81:       // Q
         return 10; // J
 
-    case 82: // R
+    case 82:      // R
         return 9; // I
 
-    case 83: // S
+    case 83:      // S
         return 8; // H
 
-    case 84: // T
+    case 84:      // T
         return 7; // G
 
-    case 85: // U
+    case 85:      // U
         return 6; // F
 
-    case 86: // V
+    case 86:      // V
         return 5; // E
 
-    case 87: // W 
+    case 87:      // W
         return 4; // D
 
-    case 88: // X
+    case 88:      // X
         return 3; // C
 
-    case 89: // Y
+    case 89:      // Y
         return 2; // B
 
-    case 90: // Z 
+    case 90:      // Z
         return 1; // A
 
     default:
@@ -926,10 +834,233 @@ int digitGeoAtBash(char c)
         //     return 0;
     }
 }
+
+// ======== FOR CREATE AN ATBASH ========
+int switchToAtBash(char c)
+{
+
+    int digit = ("%d", c);
+    switch (digit)
+    {
+    case 97:        // a
+        return 122; // z
+    case 98:        // b
+        return 121; // y
+
+    case 99:        // c
+        return 120; // x
+
+    case 100:       // d
+        return 119; // w
+
+    case 101:       // e
+        return 118; // v
+
+    case 102:       // f
+        return 117; // u
+
+    case 103:       // g
+        return 116; // t
+
+    case 104:       // h
+        return 115; // s
+
+    case 105:       // i
+        return 114; // r
+
+    case 106:       // j
+        return 113; // q
+
+    case 107:       // k
+        return 112; // p
+
+    case 108:       // l
+        return 111; // o
+
+    case 109:       // m
+        return 110; // n
+
+    case 110:       // n
+        return 109; // m
+
+    case 111:       // o
+        return 108; // l
+
+    case 112:       // p
+        return 107; // k
+
+    case 113:       // q
+        return 106; // j
+
+    case 114:       // r
+        return 105; // i
+
+    case 115:       // s
+        return 104; // h
+
+    case 116:       // t
+        return 103; // g
+
+    case 117:       // u
+        return 102; // f
+
+    case 118:       // v
+        return 101; // e
+
+    case 119:       // w
+        return 100; // d
+
+    case 120:      // x
+        return 99; // c
+
+    case 121:      // y
+        return 98; // b
+
+    case 122:      // z
+        return 97; // a
+
+    case 65:       // A
+        return 90; // Z
+
+    case 66:       // B
+        return 89; // Y
+
+    case 67:       // C
+        return 88; // X
+
+    case 68:       // D
+        return 87; // W
+
+    case 69:       // E
+        return 86; // V
+
+    case 70:       // F
+        return 85; // U
+
+    case 71:       // G
+        return 84; // T
+
+    case 72:       // H
+        return 83; // S
+
+    case 73:       // I
+        return 82; // R
+
+    case 74:       // J
+        return 81; // Q
+
+    case 75:       // K
+        return 80; // P
+
+    case 76:       // L
+        return 79; // O
+
+    case 77:       // M
+        return 78; // N
+
+    case 78:       // N
+        return 77; // M
+
+    case 79:       // O
+        return 76; // L
+
+    case 80:       // P
+        return 75; // K
+
+    case 81:       // Q
+        return 74; // J
+
+    case 82:       // R
+        return 73; // I
+
+    case 83:       // S
+        return 72; // H
+
+    case 84:       // T
+        return 71; // G
+
+    case 85:       // U
+        return 70; // F
+
+    case 86:       // V
+        return 69; // E
+
+    case 87:       // W
+        return 68; // D
+
+    case 88:       // X
+        return 67; // C
+
+    case 89:       // Y
+        return 66; // B
+
+    case 90:       // Z
+        return 65; // A
+
+    default:
+        return 0;
+
+        // case 32: // this is space
+        //     return 0;
+
+        // case 0: // this is for zero
+        //     return 0;
+
+        // case 9: // this is for tab
+        //     return 0;
+    }
+}
+
+// ===== REMOVE WHITE SPACE ======
+// char *removeSpace(char arr[])
+// {
+//     int pos = 0;
+//     char stringWithNoSpace[strlen(arr)];
+//     for (int i = 0; i < strlen(arr); i++)
+//     {
+//         // if the char is a letter (not sapce or something else) continue
+//         if (arr[i] == ' ' || isalpha(arr[i])> 0)
+//         {
+//             continue;
+//         }
+//         stringWithNoSpace[pos] = arr[i];
+//         pos++;
+//     }
+//     return stringWithNoSpace;
+// }
 // ================= REVERSE FOR ATBASH ==============
 //char *
+void reverse(char word[], int len)
+{
+    for (int i = 0; i < len /2; i++)
+    {
+        char temp = word[i];
+        word[i] = word[len-1-i];
+        word[len-1-i] = temp;
+    }
+}
+// ================= REVERSE FOR ATBASH ==============
 void lstGeoAtBash(char word[30], char txt[1024])
 {
+    // the reverse word
+    char rev[strlen(word)];
+
+    // atbash word
+    char atbashWord[strlen(word)];
+    for (int i = 0; i < strlen(word); i++)
+    {
+
+        char c = ("%c", switchToAtBash(word[i]));
+        atbashWord[i] = c;
+    }
+
+    strcpy(rev, atbashWord);
+    printf("input Word = %s\n", word);
+    printf("input atBashWord = %s\n", rev);
+    reverse(rev,strlen(rev));
+    printf("rev atBashWord= %s\n", rev);
+    //printf("%s\n", atbashWord); ////////////////////////////////////////////////////////////////////////////////////////////////
+
     //this will be the final str that we will print
     char finalStr[1024];
     // this is the temp string that we are going to check on it
@@ -942,14 +1073,18 @@ void lstGeoAtBash(char word[30], char txt[1024])
     for (int i = 0; i < strlen(txt); i++)
     {
         char cStart = txt[i];
+        // in here this condition is to make sure the the sequence is the minimum and it doesnt have something that is zero at the start
+        if (digitGeoAtBash(cStart) == 0)
+        {
+            continue;
+        }
         // check if the current 'i' element is at the same geomentry of the word, if it does concat it to finalStr
-
         if (digitGeoAtBash(txt[i]) == sum)
         {
-            printf("%d\n", digitGeoAtBash(txt[i]));
+            //printf("%d\n", digitGeoAtBash(txt[i]));
             strncat(finalStr, &cStart, 1); // notice this is str'n'cat
             strcat(finalStr, separator);   // this is strcat (no 'n')
-            continue;                         // here we need to break and  start a new loop becuase we dont want to keep checking the 'j'
+            continue;                      // here we need to break and  start a new loop becuase we dont want to keep checking the 'j'
         }
         else
         {
@@ -963,38 +1098,122 @@ void lstGeoAtBash(char word[30], char txt[1024])
             //printf("%c\n",cForward);
             strncat(tempStr, &cForward, 1); // concat the 'j' char into the tempStr to check the sequence. now we have in tempStr the 'i' char and the 'j' char, and the 'j' char we keep moving forward and concat the new 'j' char to tempStr until we pass the sum that we get from the geometry word
             // checks if their sum is equal to the gematria of the word
-            if (calcGeo(tempStr) == sum)
+            if (calcGeo(tempStr) == sum && digitGeoAtBash(cForward) != 0) // i add the and condition because this will make sure the the sequence will be the minimum and with out something that is zero at the end
             {
+
+                //*********** REMOVE WHITE SPACES AND SPECIAL CHAR ***********************
+                int pos = 0;
+                char stringWithNoSpace[strlen(word)];
+                for (int i = 0; i < strlen(word); i++)
+                {
+                    // if the char is a letter (not sapce or something else) continue
+                    if (word[i] == ' ' || isalpha(word[i]) == 0)
+                    {
+                        continue;
+                    }
+                    stringWithNoSpace[pos] = word[i];
+                    pos++;
+                }
+                //char endString = '\0';
+                //strncat(stringWithNoSpace, &endString, 1);
+                //stringWithNoSpace[pos] = '\0'; // this is to make sure the string will end
+                //*********** REMOVE WHITE SPACES AND SPECIAL CHAR ***********************
+                //********** SWITCH stringWithNoSpace TO ATBASH *********
+
+
+                //********** SWITCH stringWithNoSpace TO ATBASH *********
+                printf("stringWithNoSpace = %s\n", stringWithNoSpace);
+                tempStr[pos] = '\0';
+                if (strcmp(tempStr,atbashWord) == 0 || strcmp(tempStr,rev) == 0)
+                {
+
                 //printf("%s",tempStr);
                 strcat(finalStr, tempStr);   // concat the word to the finalStr
                 strcat(finalStr, separator); // and also add the separator '~'
+                }
             }
         }
         // at the end of the inner loop we clean the tempStr and start all over again but now the outer loop move one step ahead (i++)
         memset(tempStr, 0, strlen(tempStr)); // this memset is puting in all of the tempStr zero's
     }
-    printf("%ld\n", strlen(finalStr));
-    finalStr[strlen(finalStr)-1] = '\0';
-    printf("%s",finalStr);
+    //printf("%ld\n", strlen(finalStr));
+    finalStr[strlen(finalStr) - 1] = '\0';
+    printf("Atbash Sequences: %s", finalStr);
 }
 
+
+
+
+
+
+
+
+// ==================== Q3 ===========================
+void sortArr(int array[], int size)
+{
+
+    // loop to access each array element
+    for (int step = 0; step < size - 1; ++step)
+    {
+
+        // loop to compare array elements
+        for (int i = 0; i < size - step - 1; ++i)
+        {
+
+            // compare two adjacent elements
+            // change > to < to sort in descending order
+            if (array[i] > array[i + 1])
+            {
+
+                // swapping occurs if elements
+                // are not in the intended order
+                int temp = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = temp;
+            }
+        }
+    }
+}
+
+// this func will get an array char (string in c) and return an array of it's ascii
+void asciiArr(char arr[])
+{
+    int asciiArr[strlen(arr)]; // in this arr we will see our word by it's ascii
+    for (int i = 0; i < strlen(arr); i++)
+    {
+        int asciiChar = ("%d", arr[i]);
+        asciiArr[i] = asciiChar;
+    }
+    //return asciiArr;
+}
+
+// void sequence(char word[], char txt[])
+// {
+// }
+// void printArray(int array[], int size)
+// {
+//     for (int i = 0; i < size; ++i)
+//     {
+//         printf("%d  ", array[i]);
+//     }
+//     printf("\n");
+// }
 
 int main()
 {
 
-    char word[] = "bee";
-    char txt[] = "I'm bringing home my baby bumble bee Won\\’t my Mommy be so proud of me I\\’m bringing home my baby bumble bee \\– OUCH!! It stung me!!~";
+    char word[] = "b e,,,e";
+    char txt[] = "I'm bringvv,ying homyvve my baby bumble bee Won\\’t my Mommvy v be so proud of me I\\’m bringing home my baby bumble bee \\– OUCH!! It stung me!!~";
 
-    char word_2[] = "abb";
-    char txt_2[] = "ab*bHabbzzzab bs";
+    // char word_2[] = "abb";
+    // char txt_2[] = "ab*bHabbzzzab bs";
 
-    char word_3[] = "bee";
-    char txt_3[] = "I'm brinvvygiyvvng home my vvbaby bumblevv ybee";
+    char word_3[] = "abcd";
+    char txt_3[] = "a-bc,dbca-zwxyzabzyxw0dcba";
     char c = '*';
-    lstGeo(word, txt);
-
-    //strncat(txt_2,&c,1);
-    //printf("%s",txt_2);
-
+    char word_4[] = "fish";
+    char txt_4[] = "One, two, three, four, five,\nOnce I caught a fish alive,\nSix, seven, eight, nine, ten,\nThen I let go again.~";
+        
+    lstGeoAtBash(word_3, txt_3);
     return 0;
 }
