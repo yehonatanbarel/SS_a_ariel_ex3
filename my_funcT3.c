@@ -418,7 +418,7 @@ void lstGeo(char word[30], char txt[1024])
     }
     //printf("%ld", strlen(finalStr));
     finalStr[strlen(finalStr) - 1] = '\0';
-    printf("Gematria Sequeqnces: %s", finalStr);
+    printf("Gematria Sequences: %s", finalStr);
 }
 
 // ================= REVERSE FOR ATBASH  - Q2 =====================
