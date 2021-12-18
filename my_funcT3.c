@@ -1157,54 +1157,73 @@ void minSequence(char word[], char txt[])
     printf("Anagram Sequences: %s", finalStr);
 }
 
-// ==========================================
-// // ==================== Q3 ===========================
-// void sortArr(int array[], int size)
+
+
+// int main()
 // {
+    // char buf[1054] = {0};
+    // fgets(buf, 1054, stdin);
+    // //printf("string is: %s\n", buf);
+    // char word[30] = {0};
+    // char txt[1024] = {0};
 
-//     // loop to access each array element
-//     for (int step = 0; step < size - 1; ++step)
-//     {
+    // int w = 0;
+    // for (int i = 0; i < 31; i++)
+    // {
 
-//         // loop to compare array elements
-//         for (int i = 0; i < size - step - 1; ++i)
-//         {
+    //     if ((buf[i]) == ' ' || (buf[i]) == '\t' || (buf[i]) == '\n')
+    //     {
+    //         break;
+    //     }
+    //     else
+    //     {
+    //         word[w] = buf[i];
+    //         w++;
+    //     }
+    // }
+    // word[w] = '\0';
+    // int t = 0;
+    // for (int j = w + 1; j < w + 1024; j++)
+    // {
+    //     if ((buf[j]) == '~')
+    //     {
+    //         break;
+    //     }
+    //     else
+    //     {
+    //         txt[t] = buf[j];
+    //         t++;
+    //     }
+    // }
+    // txt[t] = '\0';
 
-//             // compare two adjacent elements
-//             // change > to < to sort in descending order
-//             if (array[i] > array[i + 1])
-//             {
+//     // char word_file[] = "bee";
+//     // char txt_file[] = "I’m bringing home my baby bumble bee\nWon’t my Mommy be so proud of me\nI’m bringing home my baby bumble bee – \nOUCH!! It stung me!!~";
 
-//                 // swapping occurs if elements
-//                 // are not in the intended order
-//                 int temp = array[i];
-//                 array[i] = array[i + 1];
-//                 array[i + 1] = temp;
-//             }
-//         }
-//     }
+//     // char word_input[] = "abcd";
+//     // char txt_input[] = "a-bc,dbca-zwxyzabzyxw0dcba~";
+
+//     // char word_input_1[] = "fish";
+//     // char txt_input_1[] = "One, two, three, four, five,\nOnce I caught a fish alive,\nSix, seven, eight, nine, ten,\nThen I let go again.~";
+
+//     // char word_input_2[] = "sea";
+//     // char txt_input_2[] = "A sailor went to sea, sea, sea\nTo see what he could see, see, see\nBut all that he could see, see, see\nWas the bottom of the deep blue sea, sea, sea!~";
+
+//     // char word_input_3[] = "sheep";
+//     // char txt_input_3[] = "Baa, baa black sheep\nHave you any wool\nYes sir, yes sir\nThree bags full.\n~";
+
+//     // char word_input_4[] = "Head";
+//     // char txt_input_4[] = "Head, shoulders, knees and toes,\nKnees and toes.\nHead, shoulders, knees and toes,\nKnees and toes.\nAnd eyes, and ears, and mouth, and nose.\nHead, shoulders, knees and toes,\nKnees and toes.~";
+
+//     char word[] = "abcd";
+//     char txt[] = "abcd";
+
+//     lstGeo(word, txt);
+//     printf("\n");
+//     lstGeoAtBash(word, txt);
+//     printf("\n");
+//     minSequence(word, txt);
+
+//      return 0;
 // }
 
-// // this func will get an array char (string in c) and return an array of it's ascii
-// void asciiArr(char arr[])
-// {
-//     int asciiArr[strlen(arr)]; // in this arr we will see our word by it's ascii
-//     for (int i = 0; i < strlen(arr); i++)
-//     {
-//         int asciiChar = ("%d", arr[i]);
-//         asciiArr[i] = asciiChar;
-//     }
-//     //return asciiArr;
-// }
-
-// // void sequence(char word[], char txt[])
-// // {
-// // }
-// // void printArray(int array[], int size)
-// // {
-// //     for (int i = 0; i < size; ++i)
-// //     {
-// //         printf("%d  ", array[i]);
-// //     }
-// //     printf("\n");
-// // }
