@@ -411,6 +411,11 @@ void lstGeo(char word[30], char txt[1024])
             {
                 char cForward = txt[j];
                 strncat(tempStr, &cForward, 1);
+                if (digitGeo(cForward) == 0)
+                {
+                    continue;
+                }
+                
                 if (calcGeo(tempStr) == sum)
                 {
                     strcat(finalStr, tempStr);
