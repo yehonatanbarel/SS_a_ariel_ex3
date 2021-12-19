@@ -364,9 +364,17 @@ int digitGeo(char c)
 }
 
 // =================== FOR GEMATRIYA - Q1 =========================
-
 void lstGeo(char word[30], char txt[1024])
 {
+    int indexOfTilda;
+    for (indexOfTilda = 0; indexOfTilda < strlen(txt); indexOfTilda++)
+    {
+        if (txt[indexOfTilda] == '~')
+        {
+            break;
+        }
+    }
+
     //this will be the final str that we will print
     char finalStr[1024] = {0};
     // this is the temp string that we are going to check on it
@@ -375,52 +383,48 @@ void lstGeo(char word[30], char txt[1024])
     char separator[] = "~";
     // the geo of the given word
     int sum = calcGeo(word);
-    // outer loop to check a sequence from the 'i' index
-    for (int i = 0; i < strlen(txt); i++)
+    // while we havent reach '~' we will continue runnig
+    
+    for (int i = 0; i < indexOfTilda;i++)
     {
+        memset(tempStr, 0, strlen(tempStr));
         char cStart = txt[i];
-        // this condition is to make sure that the word wont start with space or something that it's gematriya is zero
+        // if the cStart is zero (space or something else) continue the for loop (becuase we dont want the first char in a word to be zero)
         if (digitGeo(cStart) == 0)
         {
             continue;
         }
-
-        // check if the current 'i' element is at the same geomentry of the word, if it does concat it to finalStr
-
-        if (digitGeo(txt[i]) == sum)
+        // if cStart in gimatria is equal to the sum so we want this letter in the finalStr so we concat it with a seperator also after it
+        if (digitGeo(cStart) == sum)
         {
-            //printf("%d\n", digitGeo(txt[i]));
             strncat(finalStr, &cStart, 1); // notice this is str'n'cat
             strcat(finalStr, separator);   // this is strcat (no 'n')
-            continue;                      // here we need to break and  start a new loop becuase we dont want to keep checking the 'j'
+            continue;
         }
         else
         {
-            strncat(tempStr, &cStart, 1); // here we begin to work on the sequence so we concat the cStart to it. (it is the first char in the sequence that we bein to check)
-            //printf("%s",tempStr);
-        }
-        //inner loop to check the sequence from 'i' (from the outer loop) and forward
-        for (int j = i + 1; calcGeo(tempStr) < sum; j++)
-        {
-            char cForward = txt[j];
-            //printf("%c\n",cForward);
-            strncat(tempStr, &cForward, 1); // concat the 'j' char into the tempStr to check the sequence. now we have in tempStr the 'i' char and the 'j' char, and the 'j' char we keep moving forward and concat the new 'j' char to tempStr until we pass the sum that we get from the geometry word
-            // checks if their sum is equal to the gematria of the word
-            if (calcGeo(tempStr) == sum)
+            // if non of the above we will start adding to the tempStr and check the word inside it
+            // so first of all we will add are first char to it (cStart)
+            strncat(tempStr, &cStart, 1);
+            // now start a new loop to check until the sum is equal to the sum of our gimatria or until the end of our txt
+            for (int j = i + 1; j < indexOfTilda; j++)
             {
-                //printf("%s",tempStr);
-                strcat(finalStr, tempStr);   // concat the word to the finalStr
-                strcat(finalStr, separator); // and also add the separator '~'
+                char cForward = txt[j];
+                strncat(tempStr, &cForward, 1);
+                if (calcGeo(tempStr) == sum)
+                {
+                    strcat(finalStr, tempStr);
+                    strcat(finalStr, separator);
+                    memset(tempStr, 0, strlen(tempStr));
+                    break; // this will exit out inner for loop (the 'j')
+                }
             }
         }
-        // at the end of the inner loop we clean the tempStr and start all over again but now the outer loop move one step ahead (i++)
-        memset(tempStr, 0, strlen(tempStr)); // this memset is puting in all of the tempStr zero's
+        
     }
-    //printf("%ld", strlen(finalStr));
-    finalStr[strlen(finalStr) - 1] = '\0';
+    finalStr[strlen(finalStr)-1] = '\0';
     printf("Gematria Sequences: %s", finalStr);
 }
-
 // ================= REVERSE FOR ATBASH  - Q2 =====================
 
 int calcGeoAtBash(char word[1024])
@@ -1117,24 +1121,23 @@ void minSequence(char word[], char txt[])
         // keep add char to tempStr until it has the same len of our word
         //while (lenOfAngram < strlen(word))
         //{
-            char cStart = txt[i];
-            strncat(tempStr, &cStart, 1); // notice this is str'n'cat
-            lenOfAngram++;
-            // printf("this is out cStart =%c\n", cStart);
-            for (int j = i + 1; j < strlen(txt); j++)
+        char cStart = txt[i];
+        strncat(tempStr, &cStart, 1); // notice this is str'n'cat
+        lenOfAngram++;
+        // printf("this is out cStart =%c\n", cStart);
+        for (int j = i + 1; j < strlen(txt); j++)
+        {
+            char cForward = txt[j];
+            strncat(tempStr, &cForward, 1); // notice this is str'n'cat
+            if (("%d", cForward) != 32)
             {
-                char cForward = txt[j];
-                strncat(tempStr, &cForward, 1); // notice this is str'n'cat
-                if (("%d", cForward) != 32)
-                {
-                    lenOfAngram++;
-                }
-                if (lenOfAngram == strlen(word))
-                {
-                    break;
-                }
-                
+                lenOfAngram++;
             }
+            if (lenOfAngram == strlen(word))
+            {
+                break;
+            }
+        }
         //}
         lenOfAngram = 0;
         // create a new string that we will check on it without white sapce
@@ -1146,7 +1149,7 @@ void minSequence(char word[], char txt[])
         if (strcmp(wordCopy, tempStrCopy) == 0)
         {
             strcat(finalStr, tempStr);
-            strcat(finalStr, separator);   // this is strcat (no 'n')
+            strcat(finalStr, separator); // this is strcat (no 'n')
         }
         // printf("this is our tempStr = %s\n", tempStr);
 
@@ -1157,73 +1160,70 @@ void minSequence(char word[], char txt[])
     printf("Anagram Sequences: %s", finalStr);
 }
 
-
-
 // int main()
 // {
-    // char buf[1054] = {0};
-    // fgets(buf, 1054, stdin);
-    // //printf("string is: %s\n", buf);
-    // char word[30] = {0};
-    // char txt[1024] = {0};
+//     // char buf[1054] = {0};
+//     // fgets(buf, 1054, stdin);
+//     // //printf("string is: %s\n", buf);
+//     // char word[30] = {0};
+//     // char txt[1024] = {0};
 
-    // int w = 0;
-    // for (int i = 0; i < 31; i++)
-    // {
+//     // int w = 0;
+//     // for (int i = 0; i < 31; i++)
+//     // {
 
-    //     if ((buf[i]) == ' ' || (buf[i]) == '\t' || (buf[i]) == '\n')
-    //     {
-    //         break;
-    //     }
-    //     else
-    //     {
-    //         word[w] = buf[i];
-    //         w++;
-    //     }
-    // }
-    // word[w] = '\0';
-    // int t = 0;
-    // for (int j = w + 1; j < w + 1024; j++)
-    // {
-    //     if ((buf[j]) == '~')
-    //     {
-    //         break;
-    //     }
-    //     else
-    //     {
-    //         txt[t] = buf[j];
-    //         t++;
-    //     }
-    // }
-    // txt[t] = '\0';
+//     //     if ((buf[i]) == ' ' || (buf[i]) == '\t' || (buf[i]) == '\n')
+//     //     {
+//     //         break;
+//     //     }
+//     //     else
+//     //     {
+//     //         word[w] = buf[i];
+//     //         w++;
+//     //     }
+//     // }
+//     // word[w] = '\0';
+//     // int t = 0;
+//     // for (int j = w + 1; j < w + 1024; j++)
+//     // {
+//     //     if ((buf[j]) == '~')
+//     //     {
+//     //         break;
+//     //     }
+//     //     else
+//     //     {
+//     //         txt[t] = buf[j];
+//     //         t++;
+//     //     }
+//     // }
+//     // txt[t] = '\0';
 
-//     // char word_file[] = "bee";
-//     // char txt_file[] = "I’m bringing home my baby bumble bee\nWon’t my Mommy be so proud of me\nI’m bringing home my baby bumble bee – \nOUCH!! It stung me!!~";
+//     //     // char word_file[] = "bee";
+//     //     // char txt_file[] = "I’m bringing home my baby bumble bee\nWon’t my Mommy be so proud of me\nI’m bringing home my baby bumble bee – \nOUCH!! It stung me!!~";
 
-//     // char word_input[] = "abcd";
-//     // char txt_input[] = "a-bc,dbca-zwxyzabzyxw0dcba~";
+//     //     // char word_input[] = "abcd";
+//     //     // char txt_input[] = "a-bc,dbca-zwxyzabzyxw0dcba~";
 
-//     // char word_input_1[] = "fish";
-//     // char txt_input_1[] = "One, two, three, four, five,\nOnce I caught a fish alive,\nSix, seven, eight, nine, ten,\nThen I let go again.~";
+//     char word_input_1[] = "fish";
+//     char txt_input_1[] = "One, two, three, four, five,\nOnce I caught a fish alive,\nSix, seven, eight, nine, ten,\nThen I let go again.~";
 
-//     // char word_input_2[] = "sea";
-//     // char txt_input_2[] = "A sailor went to sea, sea, sea\nTo see what he could see, see, see\nBut all that he could see, see, see\nWas the bottom of the deep blue sea, sea, sea!~";
+//     //     // char word_input_2[] = "sea";
+//     //     // char txt_input_2[] = "A sailor went to sea, sea, sea\nTo see what he could see, see, see\nBut all that he could see, see, see\nWas the bottom of the deep blue sea, sea, sea!~";
 
-//     // char word_input_3[] = "sheep";
-//     // char txt_input_3[] = "Baa, baa black sheep\nHave you any wool\nYes sir, yes sir\nThree bags full.\n~";
+//     //     // char word_input_3[] = "sheep";
+//     //     // char txt_input_3[] = "Baa, baa black sheep\nHave you any wool\nYes sir, yes sir\nThree bags full.\n~";
 
-//     // char word_input_4[] = "Head";
-//     // char txt_input_4[] = "Head, shoulders, knees and toes,\nKnees and toes.\nHead, shoulders, knees and toes,\nKnees and toes.\nAnd eyes, and ears, and mouth, and nose.\nHead, shoulders, knees and toes,\nKnees and toes.~";
+//     //     // char word_input_4[] = "Head";
+//     //     // char txt_input_4[] = "Head, shoulders, knees and toes,\nKnees and toes.\nHead, shoulders, knees and toes,\nKnees and toes.\nAnd eyes, and ears, and mouth, and nose.\nHead, shoulders, knees and toes,\nKnees and toes.~";
 
-//     char word[] = "abcd";
-//     char txt[] = "abcd";
+//     //     char word[] = "abcd";
+//     //     char txt[] = "abcd";
 
-//     lstGeo(word, txt);
-//     printf("\n");
-//     lstGeoAtBash(word, txt);
-//     printf("\n");
-//     minSequence(word, txt);
+//     lstGeo(word_input_1, txt_input_1);
+//     //     printf("\n");
+//     //     lstGeoAtBash(word, txt);
+//     //     printf("\n");
+//     //     minSequence(word, txt);
 
-//      return 0;
+//     return 0;
 // }
-
