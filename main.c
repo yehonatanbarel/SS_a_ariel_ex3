@@ -8,43 +8,43 @@
 
 int main()
 {
-    char buf[1054] = {0};
-    fgets(buf, 1054, stdin);
-    //    printf("string is: %s\n", buf);
-    char word[30] = {0};
-    char txt[1024] = {0};
-    //printf("word is = %s", word);
-    // printf("\ntxt is = %s", txt);
+    // char buf[1054] = {0};
+    // fgets(buf, 1054, stdin);
+    // //    printf("string is: %s\n", buf);
+    // char word[30] = {0};
+    // char txt[1024] = {0};
+    // //printf("word is = %s", word);
+    // // printf("\ntxt is = %s", txt);
 
-    int w = 0;
-    for (int i = 0; i < 31; i++)
-    {
+    // int w = 0;
+    // for (int i = 0; i < 31; i++)
+    // {
 
-        if ((buf[i]) == ' ' || (buf[i]) == '\t' || (buf[i]) == '\n')
-        {
-            break;
-        }
-        else
-        {
-            word[w] = buf[i];
-            w++;
-        }
-    }
-    word[w] = '\0';
-    int t = 0;
-    for (int j = w + 1; j < w + 1024; j++)
-    {
-        if ((buf[j]) == '~')
-        {
-            break;
-        }
-        else
-        {
-            txt[t] = buf[j];
-            t++;
-        }
-    }
-    txt[t] = '\0';
+    //     if ((buf[i]) == ' ' || (buf[i]) == '\t' || (buf[i]) == '\n')
+    //     {
+    //         break;
+    //     }
+    //     else
+    //     {
+    //         word[w] = buf[i];
+    //         w++;
+    //     }
+    // }
+    // word[w] = '\0';
+    // int t = 0;
+    // for (int j = w + 1; j < w + 1024; j++)
+    // {
+    //     if ((buf[j]) == '~')
+    //     {
+    //         break;
+    //     }
+    //     else
+    //     {
+    //         txt[t] = buf[j];
+    //         t++;
+    //     }
+    // }
+    // txt[t] = '\0';
     // printf("\nword after is = %s, len is: %ld", word, strlen(word));
     // printf("\ntxt after is = %s, len is: %ld", txt, strlen(txt));
     
@@ -52,8 +52,8 @@ int main()
     // char word_file[] = "bee";
     // char txt_file[] = "I’m bringing home my baby bumble bee\nWon’t my Mommy be so proud of me\nI’m bringing home my baby bumble bee – \nOUCH!! It stung me!!~";
 
-    // char word_input[] = "abcd";
-    // char txt_input[] = "a-bc,dbca-zwxyzabzyxw0dcba~";
+    char word_input[] = "abcd";
+    char txt_input[] = "a-bc,dbca-zwxyzabzyxw0dcba~";
 
     // char word_input_1[] = "fish";
     // char txt_input_1[] = "One, two, three, four, five,\nOnce I caught a fish alive,\nSix, seven, eight, nine, ten,\nThen I let go again.~";
@@ -77,11 +77,12 @@ int main()
     // txt[2]= 'c';
     // txt[3] = 'd';
     //printf("\n");
-    lstGeo(word, txt);
+    lstGeo(word_input, txt_input);
     printf("\n");
-    lstGeoAtBash(word, txt);
+    lstGeoAtBash(word_input, txt_input);
     printf("\n");
-    minSequence(word, txt);
+    minSequence(word_input, txt_input);
+    printf("\n");
 
     return 0;
 }
