@@ -82,7 +82,6 @@ int main()
     lstGeoAtBash(word_input, txt_input);
     printf("\n");
     minSequence(word_input, txt_input);
-    printf("\n");
 
     return 0;
 }
