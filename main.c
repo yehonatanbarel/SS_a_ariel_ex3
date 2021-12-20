@@ -8,112 +8,63 @@
 
 int main()
 {
-    // char buf[1054] = {0};
-    // fgets(buf, 1054, stdin);
-    // //    printf("string is: %s\n", buf);
-    // char word[30] = {0};
-    // char txt[1024] = {0};
-    // //printf("word is = %s", word);
-    // // printf("\ntxt is = %s", txt);
 
-    // int w = 0;
-    // for (int i = 0; i < 30; i++)
-    // {
-
-    //     if ((buf[i]) == ' ' || (buf[i]) == '\t' || (buf[i]) == '\n')
-    //     {
-    //         break;
-    //     }
-    //     else
-    //     {
-    //         word[w] = buf[i];
-    //         w++;
-    //     }
-    // }
-    // word[w] = '\0';
-    // int t = 0;
-    // for (int j = w + 1; j < w + 1024; j++)
-    // {
-    //     if ( buf[j] == '\n')
-    //     {
-    //         printf("this is a new line number 1 = %c", buf[j]);
-    //     }
-    //     if ((buf[j]) == '~')
-    //     {
-    //         txt[t] = '~';
-    //         t++;
-    //         break;
-    //     }
-    //     else
-    //     {
-    //         txt[t] = buf[j];
-    //         t++;
-    //     }
-    // }
-    // // txt[t] = '\0';
-    // txt[strlen(txt)] = '\0';
-    // printf("\nthis is buf = %s", buf);
-    // printf("\nword after is = %s, len is: %ld", word, strlen(word));
-    // printf("\ntxt after is = %s, len is: %ld\n", txt, strlen(txt));
-
-    // printf("\nthis is out txt input ****= %s", txtInput);
-
-    char word[30] = {0};
+    char wordFinal[30] = {0};
     char wordInput[30] = {0};
-    scanf("%s", wordInput);
+    // scanf("%s", wordInput);
+    // for(int i = 0; i<strlen(wordInput); i++){
+    //     if (wordInput[i] != ' ' && wordInput[i] != '\n' && wordInput[i] != '\t')
+    //     {
+    //         wordFinal[i] = wordInput[i];
+    //     }
+    // }
+    // printf("INPUT = %s\n",wordInput);
+    // printf("FINAL = %s",wordFinal);
+
+    char scanAll[1054];
+    fgets(scanAll, 1054, stdin);
+    // printf("SCAN ALL = %s\n", scanAll);
     int i;
     for (i = 0; i < 30; i++)
     {
-        if (wordInput[i] != ' ' && wordInput[i] != '\t' && wordInput[i] != '\n')
+        if (scanAll[i] != ' ' && scanAll[i] != '\n' && scanAll[i] != '\t')
         {
-            word[i] = wordInput[i];
+            wordFinal[i] = scanAll[i];
         }
-        else // if we get - ' ' or '\t' or '\n' so we finished get the word input
+        else
         {
+            i++;
             break;
         }
     }
-    // // printf("asdasd");
-    // char txt[1024] = {0};
-    char txtInput[1024] = {0};
-    // scanf("%[^~]s", txtInput);
-    // int j;
-    // for (j = 0; j < strlen(txtInput); j++)
-    // {
+    // printf("\ni = %d, LEN = %ld\n", i, strlen(scanAll));
+    // printf("WORD FINAL = %s", wordFinal);
+    char txt[1024] = {0};
+    int t = 0;
+    for (int j = i; j < strlen(scanAll); j++)
+    {
+        if (scanAll[j] == '\\' && scanAll[j + 1] == 'n')
+        {
 
-    //     if (txtInput[j] != '~') // run on the txt until you get '~'
-    //     {
-    //         txt[j] = txtInput[j];
-    //     }
-    //     else
-    //     {
-    //         break;
-    //     }
-    // }
+            // t++;
+            // printf("T = %d",t);
+            // printf("C = %c", scanAll[j-1]);
+            char newLine = '\n';
+            strncat(txt, &newLine, 1);
+            // txt[t] == '\n';
+            // continue;
+            j = j + 1;
+        }
+        else
+        {
+            txt[t] = scanAll[j];
+        }
+        t++;
+    }
+    txt[strlen(txt) - 1] = '\0';
+    // printf("\nthis is txt = %s", txt);
 
-    fgets(txtInput, 1024, stdin);
-    // char c;
-    // // int i = 0;
-    // while (c != '~')
-    // {   
-    //     scanf("%c", &c);
-    //     if (c == '\n')
-    //     {
-    //         printf("^^^^^^");    
-    //     }
-          
-    //     strncat(txtInput, &c, 1);    
-    // }
-    
-    // char tilda = '~';
-    // strncat(txtInput, &tilda, 1);
-
-    // printf("this is our word input ****= %s", wordInput);
-    // printf("\nthis is out txt input ****= %s", txtInput);
-
-    // printf("\nthis is our word = %s", word);
-    // printf("\nthis is out txt = %s", txt);
-    // // char word_file[] = "bee";
+    // char word_file[] = "bee";
     // char txt_file[] = "I’m bringing home my baby bumble bee\nWon’t my Mommy be so proud of me\nI’m bringing home my baby bumble bee – \nOUCH!! It stung me!!~";
 
     // char word_input[] = "abcd";
@@ -137,11 +88,11 @@ int main()
     //printf("\n");
     // printf("this is the txt from input = %s\n",txt);
     // printf("\n");
-    lstGeo(wordInput, txtInput);
+    lstGeo(wordFinal, txt);
     printf("\n");
-    lstGeoAtBash(wordInput, txtInput);
+    lstGeoAtBash(wordFinal, txt);
     printf("\n");
-    minSequence(wordInput, txtInput);
+    minSequence(wordFinal, txt);
 
     return 0;
 }
