@@ -29,9 +29,9 @@ int main()
             // t++;
             // printf("T = %d",t);
             // printf("C = %c", scanAll[j-1]);
-            printf("\n");
-            // char newLine = '\n';
-            // strncat(wordFinal, &newLine, 1);
+            // printf("\n");
+            char newLine = '\n';
+            strncat(wordFinal, &newLine, 1);
 
             // txt[t] == '\n';
             // continue;
@@ -40,9 +40,9 @@ int main()
         }
         else if (scanAll[i] == '\\' && scanAll[i + 1] == 't')
         {
-            printf("\t");
-            // char newLine = '\t';
-            // strncat(wordFinal, &newLine, 1);
+            // printf("\t");
+            char newLine = '\t';
+            strncat(wordFinal, &newLine, 1);
             
             // txt[t] == '\n';
             // continue;
@@ -51,9 +51,9 @@ int main()
         }
         else if (scanAll[i] == ' ')
         {
-            // char newLine = ' ';
-            // strncat(wordFinal, &newLine, 1);
-            printf(" ");
+            char newLine = ' ';
+            strncat(wordFinal, &newLine, 1);
+            // printf(" ");
             // txt[t] == '\n';
             // continue;
             i = i + 1;
@@ -65,6 +65,7 @@ int main()
             // i++;
         }
     }
+    wordFinal[strlen(wordFinal) - 1] = '\0';
     // printf("%ld",strlen(wordFinal));
     // printf("\nWORD INPUT IS = %s", wordFinal);
 
@@ -92,6 +93,7 @@ int main()
         t++;
     }
     txt[strlen(txt) - 1] = '\0';
+    // printf("LEN OF TXT WITHOUT LAST CHAR = %ld",strlen(txt));
     // printf("TXT INPUT IS = %s\n", txt);
     
     // printf("\nthis is txt = %s", txt);
