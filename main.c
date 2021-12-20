@@ -8,22 +8,9 @@
 
 int main()
 {
-
     char wordFinal[30] = {0};
-    char wordInput[30] = {0};
-    // scanf("%s", wordInput);
-    // for(int i = 0; i<strlen(wordInput); i++){
-    //     if (wordInput[i] != ' ' && wordInput[i] != '\n' && wordInput[i] != '\t')
-    //     {
-    //         wordFinal[i] = wordInput[i];
-    //     }
-    // }
-    // printf("INPUT = %s\n",wordInput);
-    // printf("FINAL = %s",wordFinal);
-
     char scanAll[1054];
     fgets(scanAll, 1054, stdin);
-    // printf("SCAN ALL = %s\n", scanAll);
     int i;
     for (i = 0; i < 30; i++)
     {
@@ -37,8 +24,6 @@ int main()
             break;
         }
     }
-    // printf("\ni = %d, LEN = %ld\n", i, strlen(scanAll));
-    // printf("WORD FINAL = %s", wordFinal);
     char txt[1024] = {0};
     int t = 0;
     for (int j = i; j < strlen(scanAll); j++)
@@ -46,13 +31,9 @@ int main()
         if (scanAll[j] == '\\' && scanAll[j + 1] == 'n')
         {
 
-            // t++;
-            // printf("T = %d",t);
-            // printf("C = %c", scanAll[j-1]);
+        
             char newLine = '\n';
             strncat(txt, &newLine, 1);
-            // txt[t] == '\n';
-            // continue;
             j = j + 1;
         }
         else
@@ -62,7 +43,7 @@ int main()
         t++;
     }
     txt[strlen(txt) - 1] = '\0';
-    // printf("\nthis is txt = %s", txt);
+    
 
     // char word_file[] = "bee";
     // char txt_file[] = "I’m bringing home my baby bumble bee\nWon’t my Mommy be so proud of me\nI’m bringing home my baby bumble bee – \nOUCH!! It stung me!!~";
