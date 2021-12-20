@@ -7,95 +7,23 @@
 #define WORD 30
 int main()
 {
-    char wordFinal[30] = {0};
-    char wordInput[30] = {0};
-    // scanf("%s", wordInput);
-    // for(int i = 0; i<strlen(wordInput); i++){
-    //     if (wordInput[i] != ' ' && wordInput[i] != '\n' && wordInput[i] != '\t')
-    //     {
-    //         wordFinal[i] = wordInput[i];
-    //     }
-    // }
-    // printf("INPUT = %s\n",wordInput);
-    // printf("FINAL = %s",wordFinal);
-    char scanAll[1054];
-    fgets(scanAll, 1054, stdin);
-    // printf("SCAN ALL = %s\n", scanAll);
-    int i;
-    for (i = 0; i < 30; i++)
-    {
-        if (scanAll[i] == '\\' && scanAll[i + 1] == 'n')
-        {
-            // t++;
-            // printf("T = %d",t);
-            // printf("C = %c", scanAll[j-1]);
-            // printf("\n");
-            char newLine = '\n';
-            strncat(wordFinal, &newLine, 1);
 
-            // txt[t] == '\n';
-            // continue;
-            i = i + 1;
-            break;
-        }
-        else if (scanAll[i] == '\\' && scanAll[i + 1] == 't')
-        {
-            // printf("\t");
-            char newLine = '\t';
-            strncat(wordFinal, &newLine, 1);
-            
-            // txt[t] == '\n';
-            // continue;
-            i = i + 1;
-            break;
-        }
-        else if (scanAll[i] == ' ')
-        {
-            char newLine = ' ';
-            strncat(wordFinal, &newLine, 1);
-            // printf(" ");
-            // txt[t] == '\n';
-            // continue;
-            i = i + 1;
-            break;
-        }
-        else
-        {
-            wordFinal[i] = scanAll[i];
-            // i++;
-        }
-    }
-    wordFinal[strlen(wordFinal) - 1] = '\0';
-    // printf("%ld",strlen(wordFinal));
-    // printf("\nWORD INPUT IS = %s", wordFinal);
-
-    // printf("\ni = %d, LEN = %ld\n", i, strlen(scanAll));
-    // printf("WORD FINAL = %s", wordFinal);
+    char word[30] = {0};
     char txt[1024] = {0};
-    int t = 0;
-    for (int j = i+1; j < strlen(scanAll); j++)
+    scanf("%s", word);
+    char check;
+    for (int i = 0; i < 1024; i++)
     {
-        if (scanAll[j] == '\\' && scanAll[j + 1] == 'n')
+        scanf("%c", &check);
+        if (check == '~')
         {
-            // t++;
-            // printf("T = %d",t);
-            // printf("C = %c", scanAll[j-1]);
-            char newLine = '\n';
-            strncat(txt, &newLine, 1);
-            // txt[t] == '\n';
-            // continue;
-            j = j + 1;
+            break;
         }
-        else
-        {
-            txt[t] = scanAll[j];
-        }
-        t++;
+        txt[i] = check;
     }
-    txt[strlen(txt) - 1] = '\0';
     // printf("LEN OF TXT WITHOUT LAST CHAR = %ld",strlen(txt));
     // printf("TXT INPUT IS = %s\n", txt);
-    
+
     // printf("\nthis is txt = %s", txt);
     // char word_file[] = "bee";
     // char txt_file[] = "I’m bringing home my baby bumble bee\nWon’t my Mommy be so proud of me\nI’m bringing home my baby bumble bee – \nOUCH!! It stung me!!~";
@@ -114,11 +42,11 @@ int main()
     //printf("\n");
     // printf("this is the txt from input = %s\n",txt);
     // printf("\n");
-    lstGeo(wordFinal, txt);
+    lstGeo(word, txt);
     printf("\n");
-    lstGeoAtBash(wordFinal, txt);
+    lstGeoAtBash(word, txt);
     printf("\n");
-    minSequence(wordFinal, txt);
+    minSequence(word, txt);
 
     return 0;
 }
