@@ -24,14 +24,41 @@ int main()
     int i;
     for (i = 0; i < 30; i++)
     {
-        if (scanAll[i] != ' ' && scanAll[i] != '\n' && scanAll[i] != '\t')
+        if (scanAll[i] == '\\' && scanAll[i + 1] == 'n')
         {
-            wordFinal[i] = scanAll[i];
+            // t++;
+            // printf("T = %d",t);
+            // printf("C = %c", scanAll[j-1]);
+            char newLine = '\n';
+            strncat(wordFinal, &newLine, 1);
+            // txt[t] == '\n';
+            // continue;
+            i = i + 1;
+            break;
+        }
+        else if (scanAll[i] == '\\' && scanAll[i + 1] == 't')
+        {
+            char newLine = '\t';
+            strncat(wordFinal, &newLine, 1);
+            // txt[t] == '\n';
+            // continue;
+            i = i + 1;
+            break;
+        }
+        else if (scanAll[i] == ' ')
+        {
+            char newLine = ' ';
+            strncat(wordFinal, &newLine, 1);
+            // txt[t] == '\n';
+            // continue;
+            i = i + 1;
+            break;
         }
         else
         {
-            i++;
-            break;
+            wordFinal[i] = scanAll[i];
+            // i++;
+            
         }
     }
     // printf("\ni = %d, LEN = %ld\n", i, strlen(scanAll));
@@ -83,4 +110,4 @@ int main()
     minSequence(wordFinal, txt);
 
     return 0;
-} 
+}
