@@ -70,8 +70,8 @@ int main()
     // char word_input[] = "abcd";
     // char txt_input[] = "a-bc,dbca-zwxyzabzyxw0dcba~";
 
-    char word_input_1[] = "fish";
-    char txt_input_1[] = "One, two, three, four, five,\nOnce I caught a fish alive,\nSix, seven, eight, nine, ten,\nThen I let go again.~";
+    // char word_input_1[] = "fish";
+    // char txt_input_1[] = "One, two, three, four, five,\nOnce I caught a fish alive,\nSix, seven, eight, nine, ten,\nThen I let go again.~";
 
     // char word_input_2[] = "sea";
     // char txt_input_2[] = "A sailor went to sea, sea, sea\nTo see what he could see, see, see\nBut all that he could see, see, see\nWas the bottom of the deep blue sea, sea, sea!~";
@@ -79,8 +79,8 @@ int main()
     // char word_input_3[] = "sheep";
     // char txt_input_3[] = "Baa, baa black sheep\nHave you any wool\nYes sir, yes sir\nThree bags full.\n~";
 
-    char word_input_4[] = "Head";
-    char txt_input_4[] = "Head, shoulders, knees and toes,\nKnees and toes.\nHead, shoulders, knees and toes,\nKnees and toes.\nAnd eyes, and ears, and mouth, and nose.\nHead, shoulders, knees and toes,\nKnees and toes.~";
+    // char word_input_4[] = "Head";
+    // char txt_input_4[] = "Head, shoulders, knees and toes,\nKnees and toes.\nHead, shoulders, knees and toes,\nKnees and toes.\nAnd eyes, and ears, and mouth, and nose.\nHead, shoulders, knees and toes,\nKnees and toes.~";
 
     // char word[] = "abcd";
     // char txt[] = "abcd~";
@@ -91,7 +91,7 @@ int main()
     lstGeo(wordFinal, txt);
     printf("\n");
     lstGeoAtBash(wordFinal, txt);
-    printf("\n");
+    // printf("\n");
     minSequence(wordFinal, txt);
 
     return 0;
