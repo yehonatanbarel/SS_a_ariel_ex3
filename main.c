@@ -91,7 +91,7 @@ int main()
     lstGeo(wordFinal, txt);
     printf("\n");
     lstGeoAtBash(wordFinal, txt);
-    // printf("\n");
+    printf("\n");
     minSequence(wordFinal, txt);
 
     return 0;
