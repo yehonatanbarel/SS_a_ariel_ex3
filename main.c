@@ -29,8 +29,10 @@ int main()
             // t++;
             // printf("T = %d",t);
             // printf("C = %c", scanAll[j-1]);
-            char newLine = '\n';
-            strncat(wordFinal, &newLine, 1);
+            printf("\n");
+            // char newLine = '\n';
+            // strncat(wordFinal, &newLine, 1);
+
             // txt[t] == '\n';
             // continue;
             i = i + 1;
@@ -38,8 +40,10 @@ int main()
         }
         else if (scanAll[i] == '\\' && scanAll[i + 1] == 't')
         {
-            char newLine = '\t';
-            strncat(wordFinal, &newLine, 1);
+            printf("\t");
+            // char newLine = '\t';
+            // strncat(wordFinal, &newLine, 1);
+            
             // txt[t] == '\n';
             // continue;
             i = i + 1;
@@ -47,8 +51,9 @@ int main()
         }
         else if (scanAll[i] == ' ')
         {
-            char newLine = ' ';
-            strncat(wordFinal, &newLine, 1);
+            // char newLine = ' ';
+            // strncat(wordFinal, &newLine, 1);
+            printf(" ");
             // txt[t] == '\n';
             // continue;
             i = i + 1;
@@ -58,14 +63,16 @@ int main()
         {
             wordFinal[i] = scanAll[i];
             // i++;
-            
         }
     }
+    // printf("%ld",strlen(wordFinal));
+    // printf("\nWORD INPUT IS = %s", wordFinal);
+
     // printf("\ni = %d, LEN = %ld\n", i, strlen(scanAll));
     // printf("WORD FINAL = %s", wordFinal);
     char txt[1024] = {0};
     int t = 0;
-    for (int j = i; j < strlen(scanAll); j++)
+    for (int j = i+1; j < strlen(scanAll); j++)
     {
         if (scanAll[j] == '\\' && scanAll[j + 1] == 'n')
         {
@@ -85,6 +92,8 @@ int main()
         t++;
     }
     txt[strlen(txt) - 1] = '\0';
+    // printf("TXT INPUT IS = %s\n", txt);
+    
     // printf("\nthis is txt = %s", txt);
     // char word_file[] = "bee";
     // char txt_file[] = "I’m bringing home my baby bumble bee\nWon’t my Mommy be so proud of me\nI’m bringing home my baby bumble bee – \nOUCH!! It stung me!!~";
